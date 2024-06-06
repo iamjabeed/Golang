@@ -43,4 +43,21 @@ package main
 // 	var emptyInt int
 // 	fmt.Println(emptyString) // prints: (empty - nothing)
 // 	fmt.Println(emptyInt) // prints: 0
+//  fmt.println(Jwt)
+// }
+
+// Comma ok syntax and packages
+
+// func main() {
+// 	welcome := "welcome to user input"
+// 	fmt.Println(welcome)
+
+// 	reader := bufio.NewReader(os.Stdin)
+// 	fmt.Println("Enter your rating: ")
+
+// 	input ,err:=reader.ReadString('\n')
+// 	// input, _ := reader.ReadString('\n')
+//     //   _ : to ignore the value
+// 	fmt.Println("Thanks for rating:", input)
+// 	fmt.Println("Error :", err)
 // }
