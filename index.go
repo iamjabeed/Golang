@@ -15,7 +15,7 @@ package main
 // - A variable name cannot contain spaces
 // - The variable name cannot be any Go keywords
 
-var name ="Jabeed"
+// var name ="Jabeed"
 
 // func main() {
 // 	var movie ="Batman"
@@ -34,4 +34,13 @@ var name ="Jabeed"
 //     isDeveloper := true
 
 //     fmt.Println(name, age, height, isDeveloper)
+// }
+
+// public variable starts with capital letter
+// const Jwt string="nx78w34fcbnx034fcg7"
+// func main() {
+// 	var emptyString string
+// 	var emptyInt int
+// 	fmt.Println(emptyString) // prints: (empty - nothing)
+// 	fmt.Println(emptyInt) // prints: 0
 // }
