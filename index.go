@@ -46,7 +46,7 @@ package main
 //  fmt.println(Jwt)
 // }
 
-// Comma ok syntax and packages
+//* Comma ok syntax and packages
 
 // func main() {
 // 	welcome := "welcome to user input"

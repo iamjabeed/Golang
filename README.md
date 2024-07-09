@@ -102,8 +102,8 @@ func main() {
 
 ##### Explanation:
 
-`1. var: Keyword used to declare a variable.
-2. name: Variable name (follows naming conventions).
-3.string: Data type stored in the variable (name).
-=: Assignment operator, assigns the value "John Doe" to name.`
+#### 1. var: Keyword used to declare a variable.
+#### 2. name: Variable name (follows naming conventions).
+#### 3. string: Data type stored in the variable (name).
+#### 4. =: Assignment operator, assigns the value "John Doe" to name.
 
