@@ -150,6 +150,40 @@ func main() {
 - Main Function: Starts worker goroutines, sends jobs to the jobs channel, and collects results from the results channel.
 
 
+### What is go mod?
+ - go mod is a tool introduced in Go 1.11 to manage dependencies in Go projects. It helps you keep track of the libraries and packages your project depends on, ensuring consistent builds by specifying exact versions of these dependencies.
+
+##### 1. Module Initialization:
+ - Initializes a new module in the current directory, creating a go.mod file.
+ - Command: `go mod init`
+
+ ```go
+ go mod init example.com/myproject
+
+```
+##### 2. Add a dependency:
+ - Automatically downloads and installs the dependencies specified in your go.mod file.
+ -Command: `go mod tidy`, `go get`
+
+ ```go
+ go get github.com/gin-gonic/gin
+
+```
+
+- Note: We can compare `go mod` with node.js `package.json`
+##### Comparing go mod with Node.js's package.json
+
+| Feature      | go mod | package.json     |
+| :---        |    :----:   |          ---: |
+| Initialization      | go mod init       | npm init   |
+| Dependency File  | go.mod        | package.json      |
+| Adding Dependencies  | go get <package>        |npm install <package>      |
+| Module Caching  | $GOPATH/pkg/mod        | node_modules      |
+|Command to Install  | Implicit with go build        |npm install      |
+
+ - go mod is similar to package.json in that both are used to manage dependencies in their respective ecosystems (Go and Node.js).
+ - go mod provides a file (go.mod) to list dependencies and their versions, similar to how package.json does for Node.js.
+ - Both tools help ensure consistent builds by keeping track of exact dependency versions and provide commands to add, update, and manage dependencies
 
 ### Variables:
 - In Go, there are two ways to declare a variable
