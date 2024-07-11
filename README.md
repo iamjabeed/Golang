@@ -389,3 +389,103 @@ func main() {
 }
 
 ```
+
+### Arrays in Go:
+
+##### An array in Go is a collection of elements of the same type that are stored in a contiguous block of memory. Arrays are of fixed size, meaning once you define the size of an array, it cannot be changed.
+
+##### Declaration without Initialization
+ - You can declare an array without initializing its elements. All elements will be set to the zero value for the type (e.g., 0 for integers, "" for strings).
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var arr [5]int
+    fmt.Println(arr) 
+    // Output: [0 0 0 0 0]
+}
+
+```
+
+##### Declaration with Initialization
+ - You can declare an array and initialize it at the same time.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var arr = [5]int{1, 2, 3, 4, 5}
+    fmt.Println(arr) 
+    // Output: [1 2 3 4 5]
+}
+
+
+```
+ - You can also use the `:=` syntax for shorthand declaration and initialization
+
+ ```go
+ package main
+
+import "fmt"
+
+func main() {
+    arr := [5]int{1, 2, 3, 4, 5}
+    fmt.Println(arr) 
+    // Output: [1 2 3 4 5]
+}
+
+ ```
+
+ ##### Array Length
+ - You can get the length of an array using the `len` function.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    arr := [5]int{1, 2, 3, 4, 5}
+    fmt.Println(len(arr)) 
+    // Output: 5
+}
+
+```
+ ##### Iterating Over Arrays
+ - You can use a `for` loop or a `for range` loop to iterate over the elements of an array.
+
+##### Using for Loop
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    arr := [5]int{1, 2, 3, 4, 5}
+    for i := 0; i < len(arr); i++ {
+        fmt.Println(arr[i])
+    }
+}
+
+```
+##### Using for range Loop
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    arr := [5]int{1, 2, 3, 4, 5}
+    for index, value := range arr {
+        fmt.Printf("Index: %d, Value: %d\n", index, value)
+    }
+}
+
+```
