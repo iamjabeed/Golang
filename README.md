@@ -305,3 +305,87 @@ func main() {
  - string: Data type stored in the variable (name).
  - =: Assignment operator, assigns the value "John Doe" to name.
 
+
+### User Inputs in Go:
+
+##### In Go, you can take user input using the `fmt` package. The `Scan` functions allow you to read input from standard input (stdin).
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var name string
+    fmt.Print("Enter your name: ")
+    // Scanln reads a line from stdin
+    // you can use Scan also to read
+    fmt.Scanln(&name) 
+    fmt.Println("Hello,", name)
+}
+
+```
+##### Example: Reading Multiple Inputs
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var age int
+    var name string
+
+    fmt.Print("Enter your name: ")
+    fmt.Scanln(&name)
+
+    fmt.Print("Enter your age: ")
+    fmt.Scanln(&age)
+
+    fmt.Printf("Hello, %s! You are %d years old.\n", name, age)
+}
+
+```
+
+
+### Pointers in Go:
+
+ - A pointer is a variable that points to the memory address of another variable.
+ - Pointers in Go allow you to store and manipulate the memory addresses of variables. This can be useful for several reasons, such as passing large structures efficiently, modifying the value of a variable inside a function, or working with data that needs to be shared across different parts of a program.
+
+ #### Basic Concepts
+ ##### 1. Pointer Declaration: A pointer holds the memory address of a variable.
+ ##### 2. Address Operator (&): Used to get the memory address of a variable.
+ ##### 3. Dereference Operator (*): Used to access the value stored at the memory address.
+ 
+ #### Example: Basic Pointer Usage
+ ##### 1. Declare a Pointer: Use * to declare a pointer type.
+ ##### 2. Get Address: Use & to get the address of a variable.
+ ##### 3. Dereference: Use * to access the value at the pointer's address.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Declare a variable
+    var a int = 42
+    
+    // Declare a pointer that holds the address of variable a
+    var p *int = &a
+    
+    // Print the value of a
+    fmt.Println("Value of a:", a)
+    
+    // Print the address of a
+    fmt.Println("Address of a:", &a)
+    
+    // Print the value of the pointer (which is the address of a)
+    fmt.Println("Pointer p points to address:", p)
+    
+    // Dereference the pointer to get the value stored at the address
+    fmt.Println("Value at the address p points to:", *p)
+}
+
+```

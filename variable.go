@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func variables() {
 	var movie = "Batman"
 	var age =22
 	//Shorthand for variable
