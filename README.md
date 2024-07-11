@@ -188,13 +188,13 @@ func main() {
 ### Variables:
 - In Go, there are two ways to declare a variable
 
-##### 1. Use the var keyword, followed by variable name and type
+##### 1. Use the `var` keyword, followed by variable name and type
 
 ```go
 package main
 import ("fmt")
 
-var name = "John Doe" // Variable One
+var name = "Jaddu" // Variable One
 
 func main() {
  var fruit = "Apple" // Variable Two
@@ -217,7 +217,21 @@ func main() {
 }
 ```
 
-### Assigning Types + Type Inferred
+##### 2. Use the `const` keyword, followed by variable name and type
+ - When we use the `const` keyword can not change the value of the variable. It is meant to be constant
+```go
+package main
+import ("fmt")
+
+func main() {
+ const countryName = "India"
+ const age = 18
+ fmt.Println(countryName)
+ fmt.Println(age)
+}
+```
+
+#### Assigning Types + Type Inferred
 
 ```go
 package main
@@ -225,7 +239,7 @@ import ("fmt")
 
 func main() {
  var fruit string = "Mango" // type is string
- var user = "HuXn" // type is inferred
+ var user = "Jaddu" // type is inferred
  number := 2 // type is inferred
 
  fmt.Println(fruit)
@@ -234,7 +248,7 @@ func main() {
 }
 ```
 
-### Go Multiple Variable Declaration
+#### Go Multiple Variable Declaration
 
 ```go
 package main
