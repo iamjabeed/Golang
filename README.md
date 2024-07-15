@@ -985,6 +985,39 @@ func main() {
 
 ```
 
+##### Struct Tags:
+ - Struct tags in Go are metadata attached to struct fields. They provide instructions to the Go runtime about how to handle the fields when encoding (marshaling) or decoding (unmarshaling) structs to/from different formats like JSON, XML, or database rows. 
+
+##### Example Struct with Tags
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+type User struct {
+    ID       int    `json:"id"`
+    Name     string `json:"name"`
+    Email    string `json:"email,omitempty"`
+    Password string `json:"-"`
+}
+
+```
+
+##### Explanation of Struct Tags
+##### 1. Basic Syntax: Struct tags are written after the field type and enclosed in backticks `json:"tag"`.
+##### 2. Key-Value Pairs: Struct tags consist of key-value pairs separated by colons` :`. Each key-value pair provides a specific instruction.
+ - `json:"id"`: This instructs the JSON encoder to use `"id"` as the key when marshaling this field into JSON. For example, `{ID: 1}` becomes `{"id": 1}` in JSON.
+ - `json:"name"`: Similarly, this specifies that "`name"` should be used as the key in JSON.
+ - `json:"email,omitempty"`: The omitempty option tells the JSON encoder to omit this field from the JSON output if it's empty (`""`). Useful for optional fields.
+ - `json:"-"`: The dash`-` indicates that this field should be ignored by the JSON encoder. It won't appear in the JSON output.
+
+ ##### Why Use Struct Tags?
+  - Serialization: Struct tags are crucial for encoding Go structs into different formats like JSON, XML, etc., and vice versa.
+  - Flexibility: They allow fine-grained control over how struct fields are represented in different data formats, ensuring compatibility and efficiency.
+
 
 ##### Summary:
  - Structs: Collections of fields that group related data.
