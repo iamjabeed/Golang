@@ -1270,7 +1270,7 @@ func main() {
   ##### Example:
 
 ```go
-  package main
+package main
 
 import "fmt"
 
@@ -1292,7 +1292,7 @@ O/P:
 ##### Multiple Deferred Calls:
 
 ```go
- package main
+package main
 
 import "fmt"
 
