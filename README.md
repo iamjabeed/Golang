@@ -1026,3 +1026,182 @@ type User struct {
  - Accessing/Modifying Fields: Use the dot notation.
  - Nested Structs: Structs can contain other structs.
  - Methods on Structs: Define methods to add behavior to structs
+
+
+### Functions  in Go:
+
+##### In Go, a function is a block of code that can be executed multiple times from different parts of your program. It's a way to group a set of statements together to perform a specific task.
+  - To define a function in Go, you use the `func` keyword, followed by the function name, parameters (if any), and the return type (if any).
+
+##### Example of a function in Go:
+
+```go
+package main
+
+import "fmt"
+
+// Define a function named greet that takes a string parameter and returns a string
+func greet(name string) {
+    fmt.Println("Hello, " + name + "!")
+}
+
+func main() {
+    // Call the greet function and print the result
+    greet("John")
+    greet("Jane")
+   // Output: Hello, John!
+           // Hello, Jane!
+}
+
+```
+##### Function Declaration
+
+ - A function declaration consists of the `func` keyword, followed by the function name, parameters in parentheses, and the function body in curly braces.
+
+```go
+func functionName(param1 type1, param2 type2, ...) returnType {
+    // function body
+}
+```
+##### Function Parameters
+ - Functions can take zero or more parameters, which are specified in the parentheses after the function name. Parameters are separated by commas.
+
+ ```go
+func add(x int, y int) int {
+    return x + y
+}
+
+ ```
+ - In this example, the add function takes two int parameters, x and y.
+
+##### Function Return Types
+ - A function can return one or more values, which are specified after the parameter list. If a function returns no values, the return type is omitted.
+
+```go
+func add(x int, y int) int {
+    return x + y
+}
+
+func greet(name string) {
+    fmt.Println("Hello, " + name + "!")
+}
+
+```
+- In the first example, the add function returns an int value. In the second example, the greet function returns no values.
+
+
+##### Multiple Return Values:
+ - Go functions can return multiple values, which is useful for returning both a result and an error status, for example.
+
+```go
+func divide(dividend, divisor int) (int, error) {
+    if divisor == 0 {
+        return 0, errors.New("division by zero")
+    }
+    return dividend / divisor, nil
+}
+
+```
+
+##### Function Calls
+ - To call a function, simply use the function name followed by parentheses containing the arguments.
+
+
+```go
+result := add(2, 3)
+fmt.Println(result) 
+// Output: 5
+
+greet("John")
+
+```
+
+##### Function Scope
+ - Variables declared inside a function are only accessible within that function. This is known as the function's scope.
+
+```go
+func main() {
+    x := 10
+    fmt.Println(x) 
+    // Output: 10
+
+    func inner() {
+        y := 20
+        fmt.Println(y) 
+        // Output: 20
+    }
+
+    fmt.Println(y)
+     // Error: y is not defined
+}
+```
+- In this example, the variable x is accessible in the main function, but the variable y is only accessible within the inner function.
+
+##### Closures
+ - A closure is a function that has access to its own scope and the scope of its surrounding functions.
+
+```go
+func outer() func() int {
+    x := 10
+    return func() int {
+        x++
+        return x
+    }
+}
+
+func main() {
+    inner := outer()
+    fmt.Println(inner()) // Output: 11
+    fmt.Println(inner()) // Output: 12
+}
+
+```
+- In this example, the outer function returns a closure that has access to the x variable. The closure is called multiple times, and each time it increments the x variable and returns its value
+
+##### Anonymous Functions
+ - Functions in Go can be defined without a name and can be assigned to variables or passed as arguments.
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Define and call an anonymous function
+    func() {
+        fmt.Println("Hello, anonymous function!")
+    }()
+    
+    // Define an anonymous function and assign it to a variable
+    add := func(a int, b int) int {
+        return a + b
+    }
+    
+    // Call the anonymous function
+    fmt.Println("Sum:", add(3, 4)) // Output: Sum: 7
+}
+
+
+```
+##### Higher-Order Functions
+ - A higher-order function is a function that takes another function as an argument or returns a function as a result.
+
+
+```go
+func apply(f func(int) int, x int) int {
+    return f(x)
+}
+
+func double(x int) int {
+    return x * 2
+}
+
+func main() {
+    result := apply(double, 5)
+    fmt.Println(result) // Output: 10
+}
+
+
+```
+- In this example, the apply function takes a function `f` and an integer `x` as arguments. It calls the function `f` with the argument x and returns the result. The `double` function is passed as an argument to the `apply` function, which doubles the input value.
