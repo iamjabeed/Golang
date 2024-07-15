@@ -626,3 +626,162 @@ func main() {
  - Copying: Use `copy` to copy elements between slices.
  - Slicing: Create new slices from existing ones.
  - Iterating: Use `for` or `for range` loops.
+
+
+ ### Maps in Go:
+
+##### Maps in Go are a built-in data structure that associates keys with values. They provide a way to store and retrieve data efficiently, similar to dictionaries in Python or Objects in Js.
+  - A map is an unordered collection of key-value pairs. Each key in a map is unique, and you can use the key to look up the corresponding value.
+ - Default value of a map is nil
+
+##### Creating and Initializing Maps
+
+##### Using Map Literals
+ - You can create and initialize a map using a map literal.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Create and initialize a map using a map literal
+    m := map[string]int{
+        "Jaddu": 24,
+        "Bob":   25,
+    }
+    fmt.Println(m) // Output: map[Alice:30 Bob:25]
+}
+
+```
+
+##### Using the `make` Function
+
+ - You can create a map using the make function, specifying the key type and value type.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Create a map with string keys and int values
+    m := make(map[string]int)
+    fmt.Println(m) // Output: map[]
+}
+
+```
+ 
+##### Adding and Retrieving Values
+
+##### Adding Values
+ - You can add values to a map using the syntax `map[key] = value`.
+
+ ```go
+package main
+
+import "fmt"
+
+func main() {
+    m := make(map[string]int)
+    m["Jaddu"] = 24
+    m["Bob"] = 25
+    fmt.Println(m) 
+    // Output: map[Jaddu:24 Bob:25]
+}
+
+
+ ```
+
+ ##### Retrieving Values
+ - You can retrieve values from a map using the key.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    m := map[string]int{
+        "Jaddu": 24,
+        "Bob":   25,
+    }
+    age := m["Jaddu"]
+    fmt.Println("Jaddu's age:", age)
+     // Output: Jaddu's age: 24
+}
+
+```
+ ##### Checking if a Key Exists
+ - When retrieving a value from a map, you can check if the key exists by using the second return value from the map lookup.
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    m := map[string]int{
+        "Jaddu": 24,
+        "Bob":   25,
+    }
+    age, ok := m["Charlie"]
+    if ok {
+        fmt.Println("Charlie's age:", age)
+    } else {
+        fmt.Println("Charlie is not in the map")
+    }
+}
+
+```
+
+ ##### Deleting a Key
+ - You can delete a key-value pair from a map using the `delete` function.
+
+##### Using for Loop
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    m := map[string]int{
+        "Jaddu": 24,
+        "Bob":   25,
+    }
+    delete(m, "Bob")
+    fmt.Println(m) 
+    // Output: map[Jaddu:24]
+}
+
+```
+##### Iterating Over a Map
+ - You can iterate over a map using a for range loop.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    m := map[string]int{
+        "Alice": 30,
+        "Bob":   25,
+    }
+    for key, value := range m {
+        fmt.Printf("%s: %d\n", key, value)
+    }
+}
+
+```
+
+##### Summary:
+ - `Maps` in Go are used to store key-value pairs.
+ - Creating Maps: Use `make` or `map literals`.
+ - Adding/Retrieving Values: Use `map[key] = value` and `map[key]`.
+ - Checking Existence: Use the second return value from a map lookup.
+ - Deleting Keys: Use the `delete` function.
+ - Iterating: Use `for rang`e loops.
+ 
