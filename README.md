@@ -352,6 +352,7 @@ func main() {
 
  - A pointer is a variable that points to the memory address of another variable.
  - Pointers in Go allow you to store and manipulate the memory addresses of variables. This can be useful for several reasons, such as passing large structures efficiently, modifying the value of a variable inside a function, or working with data that needs to be shared across different parts of a program.
+ - In Go, the `*` symbol is used to declare a pointer. A pointer is a variable that holds the memory address of another variable. Pointers are useful because they allow functions to modify the value of a variable directly, rather than working with a copy of the variable.
 
  #### Basic Concepts
  ##### 1. Pointer Declaration: A pointer holds the memory address of a variable.
@@ -1205,3 +1206,110 @@ func main() {
 
 ```
 - In this example, the apply function takes a function `f` and an integer `x` as arguments. It calls the function `f` with the argument x and returns the result. The `double` function is passed as an argument to the `apply` function, which doubles the input value.
+
+
+##### Panic Function in Go:
+ - The `panic` function in Go is used to cause a program to terminate immediately and print an error message. It is generally used to handle unrecoverable errors that should stop the normal execution of the program. When `panic` is called, the program stops executing the current function, runs any deferred functions, and then terminates.
+
+ ##### Example:
+
+ ```go
+ package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Start of main function")
+
+    panic("Something went wrong!")
+
+    fmt.Println("This line will never be executed")
+}
+ // O/P:
+ Start of main function
+ panic: Something went wrong!
+
+goroutine 1 [running]:
+main.main()
+/path/to/your/file.go:8 +0x40
+exit status 2
+
+ ```
+ ##### 1. Usage
+  - `panic` should be used for critical errors where the program cannot continue.
+  - It is typically used in situations where something has gone seriously wrong, such as encountering an unexpected condition that makes further execution impossible or dangerous.
+##### 2. Behavior:
+ - When `panic` is called, the program stops executing the current function and begins unwinding the stack.
+ - Deferred functions (functions scheduled to run with defer) are executed in the reverse order they were deferred.
+ - After running all deferred functions, the program exits and prints the panic message along with a stack trace to the console.
+
+ ##### Example with `defer`
+
+ ```go
+ package main
+
+import "fmt"
+
+func main() {
+    defer fmt.Println("This will be printed last, before the program exits")
+
+    fmt.Println("Start of main function")
+
+    panic("Something went wrong!")
+
+    fmt.Println("This line will never be executed")
+}
+
+ ```
+
+ ##### What is Defer:
+  - The `defer` statement in Go is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. Deferred function calls are executed in the reverse order that they were deferred, right before the surrounding function returns, regardless of whether the function returns normally or via a panic.
+  - Deferred functions are executed in Last In, First Out (LIFO) order
+  - This means that if you defer multiple function calls, the last one deferred will be the first to execute when the surrounding function returns.
+
+  ##### Example:
+
+```go
+  package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Start of main function")
+
+    defer fmt.Println("This is deferred")
+
+    fmt.Println("End of main function")
+}
+O/P:
+ Start of main function
+ End of main function
+ This is deferred
+
+
+```
+
+##### Multiple Deferred Calls:
+
+```go
+ package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Start of main function")
+
+    defer fmt.Println("First deferred call")
+    defer fmt.Println("Second deferred call")
+    defer fmt.Println("Third deferred call")
+
+    fmt.Println("End of main function")
+}
+O/P:
+  Start of main function
+  End of main function
+  Third deferred call
+  Second deferred call
+  First deferred call
+
+```
