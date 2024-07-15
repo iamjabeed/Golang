@@ -785,3 +785,211 @@ func main() {
  - Deleting Keys: Use the `delete` function.
  - Iterating: Use `for rang`e loops.
  
+
+### Structs in Go:
+
+##### Structs are one of the most important and commonly used data structures in Go. They allow you to group together related data, which can be of different types, into a single unit. You can think of a struct as a way to create your own custom data types.
+
+ - A struct is a collection of fields. Each field has a name and a type. Structs are used to group related data together.
+ - You can compare `Struct` with `Schema` in Mongoose
+
+##### Defining a Struct
+
+ - To define a struct, use the `type` and `struct` keywords.
+
+```go
+package main
+
+import "fmt"
+
+// Define a struct type named Person
+type Person struct {
+    Name string
+    Age  int
+    City string
+}
+
+func main() {
+    // Create a new instance of the Person struct
+    var p1 Person
+    p1.Name = "Jaddu"
+    p1.Age = 24
+    p1.City = "Bangalore"
+    
+    fmt.Println(p1) 
+    // Output: {Jaddu 24 Bangalore}
+}
+
+```
+
+##### Creating and Initializing Structs
+
+##### Using `Struct` Literals
+
+ - You can create and initialize a struct using a `struct` literal.
+
+```go
+package main
+
+import "fmt"
+
+// Define the Person struct
+type Person struct {
+    Name string
+    Age  int
+    City string
+}
+
+func main() {
+    // Initialize a struct using a struct literal
+    p2 := Person{Name: "Sara", Age: 22, City: "Los Angeles"}
+    fmt.Println(p2) // Output: {Sara 25 Los Angeles}
+}
+
+```
+##### Using `new` Function
+
+ - You can also create a pointer to a struct using the `new` function.
+
+```go
+package main
+
+import "fmt"
+
+// Define the Person struct
+type Person struct {
+    Name string
+    Age  int
+    City string
+}
+
+func main() {
+    // Create a pointer to a new Person struct
+    p3 := new(Person)
+    p3.Name = "Charlie"
+    p3.Age = 35
+    p3.City = "New York"
+    
+    fmt.Println(*p3) // Output: {Charlie 35 New York"}
+}
+
+
+```
+ 
+##### Accessing and Modifying Struct Fields
+ - You can access and modify the fields of a struct using the `dot notation`.
+
+ ```go
+package main
+
+import "fmt"
+
+// Define the Person struct
+type Person struct {
+    Name string
+    Age  int
+    City string
+}
+
+func main() {
+    // Create and initialize a Person struct
+    p := Person{Name: "Dave", Age: 40, City: "San Francisco"}
+    
+    // Access fields
+    fmt.Println("Name:", p.Name) 
+    // Output: Name: Dave
+    fmt.Println("Age:", p.Age)   
+    // Output: Age: 40
+    fmt.Println("City:", p.City) 
+    // Output: City: San Francisco
+    
+    // Modify fields
+    p.Age = 41
+    fmt.Println("Updated Age:", p.Age) 
+    // Output: Updated Age: 41
+}
+
+ ```
+
+ ##### Nested Structs
+ - Structs can be nested, meaning you can have a struct as a field within another struct.
+
+```go
+package main
+
+import "fmt"
+
+// Define the Address struct
+type Address struct {
+    Street string
+    City   string
+    Zip    string
+}
+
+// Define the Person struct with an embedded Address struct
+type Person struct {
+    Name    string
+    Age     int
+    Address Address
+}
+
+func main() {
+    // Create and initialize a nested struct
+    p := Person{
+        Name: "Eve",
+        Age:  28,
+        Address: Address{
+            Street: "123 Main St",
+            City:   "Boston",
+            Zip:    "02118",
+        },
+    }
+    
+    fmt.Println(p)
+    // Output: {Eve 28 {123 Main St Boston 02118}}
+    
+    // Access nested fields
+    fmt.Println("City:", p.Address.City) 
+    // Output: City: Boston
+}
+
+```
+ ##### Methods on Structs
+ - You can define methods on structs to add behavior to them. A method is a function with a special receiver argument.
+
+
+```go
+package main
+
+import "fmt"
+
+// Define the Person struct
+type Person struct {
+    Name string
+    Age  int
+}
+
+// Define a method on the Person struct
+func (p Person) Greet() {
+    fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
+}
+
+func main() {
+    // Create and initialize a Person struct
+    p := Person{Name: "Jaddu", Age: 20}
+    
+    // Call the Greet method
+    p.Greet()
+    // Output: Hello, my name is Jaddu and I am 20 years old.
+}
+
+```
+
+
+##### Summary:
+ - Structs: Collections of fields that group related data.
+ - Defining Structs: Use the `type` and `struct` keywords.
+ - Creating Structs: Use struct literals or the `new` function.
+ - Accessing/Modifying Fields: Use the dot notation.
+ - Nested Structs: Structs can contain other structs.
+ - Methods on Structs: Define methods to add behavior to structs
