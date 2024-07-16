@@ -1315,8 +1315,125 @@ func main() {
 
  ```
 
- ### Methods in Go:
+### Methods in Go:
+ - In Go, methods are functions with a special receiver argument. The receiver can be a value or a pointer to a struct. Methods allow you to define behaviors associated with your data types.
 
+ ##### Method Syntax:
+
+ ```go
+ func (receiverType Receiver) methodName(parameters) returnType {
+    // method body
+}
+
+ ```
+ ##### Example:
+
+ ```go
+ package main
+
+import (
+	"fmt"
+)
+
+// Defining the Person struct
+type Person struct {
+	FirstName string
+	LastName  string
+	Age       int
+}
+
+// Method to get the full name of the person
+func (p Person) FullName() string {
+	return p.FirstName + " " + p.LastName
+}
+
+// Method to check if the person is an adult
+func (p Person) IsAdult() bool {
+	return p.Age >= 18
+}
+
+// Method to increment the age of the person
+// Notice the pointer receiver to modify the original struct
+func (p *Person) IncrementAge() {
+	p.Age++
+}
+
+func main() {
+	// Creating an instance of Person
+	person := Person{
+		FirstName: "John",
+		LastName:  "Doe",
+		Age:       20,
+	}
+
+	// Calling the FullName method
+	fmt.Println("Full Name:", person.FullName())
+
+	// Calling the IsAdult method
+	fmt.Println("Is Adult:", person.IsAdult())
+
+	// Incrementing the age using the IncrementAge method
+	person.IncrementAge()
+	fmt.Println("New Age:", person.Age)
+}
+
+
+ ```
+
+ ##### Real-Time Usage in API Development:
+  - In a real-world scenario, you might define methods on structs that represent entities in your application. For example, in an API for user management, you might have a User struct with methods for various operations.
+
+ ```go
+ package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
+
+type User struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"-"`
+}
+
+// Method to check if the email is valid (dummy example)
+func (u User) IsValidEmail() bool {
+	// Simplified email validation
+	return len(u.Email) > 5 && u.Email[len(u.Email)-4:] == ".com"
+}
+
+// Method to hide the password from JSON response
+func (u *User) HidePassword() {
+	u.Password = ""
+}
+
+// Handler to get user information
+func getUserHandler(w http.ResponseWriter, r *http.Request) {
+	user := User{
+		ID:       1,
+		Name:     "Alice",
+		Email:    "alice@example.com",
+		Password: "secret",
+	}
+
+	// Hide the password before sending the response
+	user.HidePassword()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(user)
+}
+
+func main() {
+	http.HandleFunc("/user", getUserHandler)
+	fmt.Println("Server is running on port 8080")
+	http.ListenAndServe(":8080", nil)
+}
+
+ ```
+ - By using methods, you can encapsulate behavior related to your data types and make your code more organized and modular.
 
 ### What is Defer:
   - The `defer` statement in Go is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. Deferred function calls are executed in the reverse order that they were deferred, right before the surrounding function returns, regardless of whether the function returns normally or via a panic.
