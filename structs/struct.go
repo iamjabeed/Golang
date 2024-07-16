@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 type Marks struct {
-	english string
-	math string
-	science string
+	English string
+	Math string
+	Science string
 }
 
 type Person struct {
@@ -23,9 +23,9 @@ func main() {
 		age:       22,
 		country:   "India",
 		marks: Marks{
-			english: "94",
-			math: "98",
-			science: "89",
+			English: "94",
+			Math: "98",
+			Science: "89",
 		},
 	}
 

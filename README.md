@@ -785,7 +785,6 @@ func main() {
  - Checking Existence: Use the second return value from a map lookup.
  - Deleting Keys: Use the `delete` function.
  - Iterating: Use `for rang`e loops.
- 
 
 ### Structs in Go:
 
@@ -955,7 +954,60 @@ func main() {
 }
 
 ```
- ##### Methods on Structs
+
+##### Capitalization Rules
+ - In Go, the visibility of struct fields and methods is determined by their capitalization. By following this convention, you control whether a field or method is accessible outside of the package where it is defined.
+
+##### 1.Exported (Public) Fields and Methods:
+ - Fields and methods that start with an uppercase letter are exported, meaning they are accessible from other packages.
+##### 2.Unexported (Private) Fields and Methods:
+ - Fields and methods that start with a lowercase letter are unexported, meaning they are only accessible within the package where they are defined.
+
+```go
+
+package main
+
+import (
+	"fmt"
+)
+
+type Person struct {
+	Name    string // Exported field (public)
+	age     int    // Unexported field (private)
+}
+
+// Exported method
+func (p Person) GetAge() int {
+	return p.age
+}
+
+// Unexported method
+func (p *Person) setAge(age int) {
+	p.age = age
+}
+
+func main() {
+	p := Person{Name: "Alice", age: 30}
+	
+	// Accessing exported field
+	fmt.Println("Name:", p.Name)
+	
+	// Accessing unexported field directly (will cause a compilation error)
+	// fmt.Println("Age:", p.age)
+
+	// Accessing unexported field via exported method
+	fmt.Println("Age:", p.GetAge())
+
+	// Setting age using an unexported method within the same package
+	p.setAge(35)
+	fmt.Println("New Age:", p.GetAge())
+}
+
+```
+ - Use uppercase for fields and methods that need to be accessed from outside the package.
+ - Use lowercase for fields and methods that should be hidden within the package.
+
+##### Methods on Structs
  - You can define methods on structs to add behavior to them. A method is a function with a special receiver argument.
 
 
@@ -1008,6 +1060,7 @@ type User struct {
 ```
 
 ##### Explanation of Struct Tags
+
 ##### 1. Basic Syntax: Struct tags are written after the field type and enclosed in backticks `json:"tag"`.
 ##### 2. Key-Value Pairs: Struct tags consist of key-value pairs separated by colons` :`. Each key-value pair provides a specific instruction.
  - `json:"id"`: This instructs the JSON encoder to use `"id"` as the key when marshaling this field into JSON. For example, `{ID: 1}` becomes `{"id": 1}` in JSON.
@@ -1262,7 +1315,10 @@ func main() {
 
  ```
 
- ##### What is Defer:
+ ### Methods in Go:
+
+
+### What is Defer:
   - The `defer` statement in Go is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. Deferred function calls are executed in the reverse order that they were deferred, right before the surrounding function returns, regardless of whether the function returns normally or via a panic.
   - Deferred functions are executed in Last In, First Out (LIFO) order
   - This means that if you defer multiple function calls, the last one deferred will be the first to execute when the surrounding function returns.
