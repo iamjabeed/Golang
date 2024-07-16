@@ -1486,3 +1486,78 @@ O/P:
   First deferred call
 
 ```
+
+### Advanced:
+
+### Interfaces in GO:
+ - In Go, an interface is a collection of methods that a type can implement. It's a way to define a contract that a type must adhere to, without caring about the underlying implementation.
+ - Interfaces are a way to define a set of method signatures that a type must implement. Unlike other languages, Go’s interfaces are implemented implicitly. This means that a type does not need to explicitly declare that it implements an interface, it just needs to provide the methods that the interface requires
+
+##### Syntax
+- An interface in Go specifies a method set, which is a collection of method signatures. Any type that has methods matching the method set of an interface is considered to implement that interface.
+
+```go
+
+type InterfaceName interface {
+    MethodName1(param1 type1, param2 type2) returnType1
+    MethodName2(param1 type1) returnType2
+}
+
+```
+
+##### Example
+
+```go
+package main
+
+import "fmt"
+
+// Define a simple interface named 'Describer'
+type Describer interface {
+    Describe() string
+}
+
+// Implement the interface for a 'Person'
+type Person struct {
+    Name string
+    Age  string
+}
+
+// Implement the 'Describe' method for 'Person'
+func (p Person) Describe() string {
+    return "Hi, I'm " + p.Name + "and my age is " + p.Age
+}
+
+// Implement the interface for a 'Car'
+type Car struct {
+    Model string
+}
+
+// Implement the 'Describe' method for 'Car'
+func (c Car) Describe() string {
+    return "This is a " + c.Model + " car"
+}
+
+// Function to display description using the interface
+func displayDescription(d Describer) {
+    fmt.Println(d.Describe())
+}
+
+func main() {
+    // Create instances of Person and Car
+    person := Person{Name: "Jaddu"}
+    car := Car{Model: "BMW"}
+
+    // Use the Describe method through the Describer interface
+    displayDescription(person)
+    displayDescription(car)
+}
+```
+
+##### Explanation:
+
+- We define an interface `Describer` with a single method `Describe`.
+- We define a struct type `Person` and `Car`.
+- We implement the `Describe` method for the `Person` type and `Car` type,   which makes `Person` & `Car` satisfy the `Describer` interface.
+- Create instances of `Person` and `Car`.
+- Use the `Describe` method through the `Describer` interface
